@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+  /* Cabeçalho */
+  header {
+    background-color: #5D4037;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Logo */
+  header .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  header .search-bar input {
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+  }
+
+  header .search-bar button {
+    width: 90px;
+  }
+  
+  /* Menu de navegação */
+  header .menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  header .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  /* Efeito hover no menu */
+  header .menu a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s;
+  }
+  
+  header .menu a:hover::after {
+    width: 100%;
+  }
+
+  .header__user-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .user-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 110px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .user-menu a {
+    display: block;
+    text-decoration: none;
+    color: #5D4037; 
+    margin: 5px 0;
+    background-color: white;
+    padding: 5px;
+  }
+
+
+.review {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.review__title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #6f4e37;
+}
+
+.review__stars {
+    margin-bottom: 20px;
+}
+
+.star {
+    font-size: 2em;
+    color: #ffc107;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star1 {
+    color: gray;
+    font-size: 2em;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star:hover {
+    transform: scale(1.2);
+}
+
+.review__submit {
+    display: inline-block;
+    background-color: #5D4037;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.review__submit:hover {
+    background-color: #563826;
+}
+
+.review__comment-section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.review__label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.review__textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.review__textarea:focus {
+    border-color: #6f4e37;
+    outline: none;
+}
+
+.review__stars .star {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.review__stars .star.selecionada {
+  color: gold;
+}
+
+
+
+  /* Rodapé */
+  footer {
+    background-color: #5D4037;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+  
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+  
+footer a:hover {
+    text-decoration: none;
+}
+

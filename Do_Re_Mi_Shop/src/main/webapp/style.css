@@ -1,0 +1,488 @@
+@charset "UTF-8";
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ajustes de fonte e cor geral */
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Estrutura do body para ocupar toda a tela */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #5D4037;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Barra de pesquisa */
+.search-bar input {
+    width: 250px;
+    position: relative;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #5D4037;
+}
+
+/* Seção de resultados da pesquisa */
+#resultados-pesquisa {
+    margin: 0;
+    padding: 20px;
+    min-height: auto;
+}
+
+#resultados-pesquisa .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
+}
+
+#resultados-pesquisa .item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#resultados-pesquisa .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+#resultados-pesquisa .item .image {
+    width: 100%;
+    height: 220px;
+    background-color: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#resultados-pesquisa .item .image img {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#resultados-pesquisa .item .name {
+    font-size: 1.2rem;
+    color: #5D4037;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#resultados-pesquisa .item p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+#resultados-pesquisa .item form button {
+    background: #5D4037;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1rem;
+}
+
+#resultados-pesquisa .item form button:hover {
+    background: #4E342E;
+}
+
+#resultados-pesquisa p {
+    font-size: 1.2rem;
+    color: #5D4037;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#resultados-pesquisa p.loading {
+    font-size: 1.2rem;
+    color: #5D4037;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#resultados-pesquisa p.loading::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #5D4037;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Menu de navegação */
+header .menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+header .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    margin-right: 20px;
+}
+
+header .menu a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s;
+}
+
+header .menu a:hover::after {
+    width: 100%;
+}
+
+.header__user-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 110px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.user-menu a {
+    display: block;
+    text-decoration: none;
+    color: #5D4037;
+    margin: 5px 0;
+    background-color: white;
+    padding: 5px;
+}
+
+/* Banner */
+.banner {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    height: auto;
+    background-color: #EEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-content {
+    max-width: 600px;
+    margin: 0;
+    padding: 30px;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    margin: 0 0 5px 0;
+    color: #5D4037;
+    padding: 0;
+}
+
+.banner p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #5D4037;
+    padding: 0;
+}
+
+/* Seções gerais */
+main {
+    flex: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Espaçamento padrão das seções */
+.secao {
+    margin: 0;
+    padding: 20px;
+    border: none;
+}
+
+/* Títulos das seções */
+.title {
+    font-size: 2rem;
+    color: #5D4037;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #5D4037;
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+/* Oculta o traço inicialmente até a seção ser exibida */
+#novidades .title::after,
+#promocoes .title::after,
+#contacto .title::after {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#novidades[style*="display: block"] .title::after,
+#promocoes[style*="display: block"] .title::after,
+#contacto[style*="display: block"] .title::after {
+    opacity: 1;
+}
+
+/* Fullwidth (para categorias e promoções) */
+.secao-fullwidth {
+    width: 100%;
+    margin: 0;
+    background-color: #f3f3f3;
+}
+
+.secao-fullwidth .secao-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Grade de itens */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
+}
+
+/* Cada item da grade (card) */
+.item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Área de imagem dentro do item */
+.item .image {
+    width: 100%;
+    height: 220px;
+    background-color: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Nome do instrumento ou categoria */
+.item .name {
+    font-size: 1.2rem;
+    color: #5D4037;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Botão dentro do item */
+.item button {
+    background: #5D4037;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1rem;
+}
+
+.item button a {
+    text-decoration: none;
+    color: white;
+}
+
+.item button:hover {
+    background: #4E342E;
+}
+
+/* Formulário de contato */
+.contato-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contato-form label {
+    font-weight: bold;
+    color: #5D4037;
+}
+
+.contato-form input,
+.contato-form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contato-form button {
+    background: #5D4037;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.3s;
+}
+
+.contato-form button:hover {
+    background: #4E342E;
+}
+
+/* Transições de opacidade */
+#novidades,
+#promocoes,
+#contacto,
+#resultados-pesquisa {
+    transition: opacity 0.3s ease;
+}
+
+#novidades[style*="display: none"],
+#promocoes[style*="display: none"],
+#contacto[style*="display: none"] {
+    opacity: 0;
+}
+
+/* Rodapé */
+footer {
+    background-color: #5D4037;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 600px) {
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    header .menu a {
+        font-size: 14px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    #resultados-pesquisa .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .item {
+        max-width: 300px;
+    }
+}
