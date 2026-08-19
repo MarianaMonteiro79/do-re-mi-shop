@@ -1,0 +1,130 @@
+create database DO_RE_MI_SHOP;
+
+USE DO_RE_MI_SHOP;
+
+CREATE TABLE Login (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Utilizador VARCHAR(50) NOT NULL UNIQUE,
+    Senha VARCHAR(50) NOT NULL UNIQUE,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    E_admin TINYINT(1) DEFAULT 0,
+    E_cliente TINYINT(1) DEFAULT 1
+);
+
+CREATE TABLE Funcionario (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Cargo VARCHAR(50) NOT NULL,
+    LoginID INT NOT NULL,
+    FOREIGN KEY (LoginID) REFERENCES Login(ID)
+);
+
+CREATE TABLE Cliente (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Telefone VARCHAR(20),
+    Tipo_cliente VARCHAR(50),
+    Genero_musical_favorito VARCHAR(50),
+    Observacao_cliente TEXT
+);
+
+CREATE TABLE Produto (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Preco DECIMAL(10,2) NOT NULL,
+    Stock INT DEFAULT 0,
+    Categoria VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Instrumento_musical (
+    ProdutoID INT PRIMARY KEY,
+    Tipo VARCHAR(50) NOT NULL,
+    Modelo VARCHAR(50),
+    Material VARCHAR(50),
+    Cor VARCHAR(50),
+    Origem VARCHAR(50),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE Acessorios_musicais (
+    ProdutoID INT PRIMARY KEY,
+    Tipo VARCHAR(50) NOT NULL,
+    Material VARCHAR(50),
+    Compatibilidade VARCHAR(100),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE Marca (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Fornecedor (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Contacto VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Pedido (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Data DATETIME NOT NULL,
+    Preco_Total DECIMAL(10,2) NOT NULL,
+    ClienteID INT NOT NULL,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ID)
+);
+
+CREATE TABLE Item_do_Pedido (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Quantidade INT NOT NULL,
+    Subtotal DECIMAL(10,2) NOT NULL,
+    PedidoID INT NOT NULL,
+    ProdutoID INT NOT NULL,
+    FOREIGN KEY (PedidoID) REFERENCES Pedido(ID),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(ID)
+);
+
+CREATE TABLE Venda (
+    N_Fatura INT PRIMARY KEY AUTO_INCREMENT,
+    Data DATE NOT NULL,
+    Hora TIME NOT NULL,
+    PedidoID INT NOT NULL,
+    FOREIGN KEY (PedidoID) REFERENCES Pedido(ID)
+);
+
+CREATE TABLE Pagamento (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Status VARCHAR(20) NOT NULL,
+    Metodo VARCHAR(50) NOT NULL,
+    VendaID INT NOT NULL,
+    FOREIGN KEY (VendaID) REFERENCES Venda(N_Fatura)
+);
+
+CREATE TABLE Compra (
+    Nota_Fiscal INT PRIMARY KEY AUTO_INCREMENT,
+    Data DATE NOT NULL,
+    Prazo_entrega DATE,
+    Metodo VARCHAR(50) NOT NULL,
+    Custo_total DECIMAL(10,2) NOT NULL,
+    FornecedorID INT NOT NULL,
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedor(ID)
+);
+
+CREATE TABLE Item_da_compra (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Quantidade INT NOT NULL,
+    Subtotal DECIMAL(10,2) NOT NULL,
+    Preco_pacote DECIMAL(10,2) NOT NULL,
+    Lote VARCHAR(50),
+    CompraID INT NOT NULL,
+    ProdutoID INT NOT NULL,
+    FOREIGN KEY (CompraID) REFERENCES Compra(Nota_Fiscal),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(ID)
+);
+
+CREATE TABLE Marca_Fornecedor (
+    FornecedorID INT NOT NULL,
+    MarcaID INT NOT NULL,
+    PRIMARY KEY (FornecedorID, MarcaID),
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedor(ID),
+    FOREIGN KEY (MarcaID) REFERENCES Marca(ID)
+);
