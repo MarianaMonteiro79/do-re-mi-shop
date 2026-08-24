@@ -1,1 +1,12 @@
+# Build files
 /build/
+/bin/
+*.class
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# Operating system
+.DS_Store
