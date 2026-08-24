@@ -4,7 +4,7 @@ Do Re Mi Shop is a Java web application developed as an academic project for man
 
 The application includes different areas for customers, administrators, employees and suppliers, with features related to product management, sales, inventory and online purchases.
 
-I was responsible for the implementation and development of the application code.
+I was responsible for the full implementation of the application code.
 
 ## Features
 
@@ -47,7 +47,6 @@ I was responsible for the implementation and development of the application code
 - HTML
 - CSS
 - MySQL
-- Eclipse
 
 ## Database
 
