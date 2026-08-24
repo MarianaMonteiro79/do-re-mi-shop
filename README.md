@@ -61,18 +61,24 @@ An available SQL script is included in the repository:
 
 ## Screenshots
 
-<p align="center">
-  <img src="docs/screenshots/home.png" width="45%" alt="Do Re Mi Shop home page">
-  <img src="docs/screenshots/cart.png" width="45%" alt="Shopping cart">
-</p>
+### Home & Shopping Cart
 
 <p align="center">
-  <img src="docs/screenshots/product-management.png" width="45%" alt="Product management">
-  <img src="docs/screenshots/inventory.png" width="45%" alt="Inventory">
+  <img src="docs/screenshots/home.png" width="48%" alt="Do Re Mi Shop home page">
+  <img src="docs/screenshots/cart.png" width="48%" alt="Shopping cart">
 </p>
 
+### Product Management & Inventory
+
 <p align="center">
-  <img src="docs/screenshots/login.png" width="45%" alt="Login page">
+  <img src="docs/screenshots/product-management.png" width="48%" alt="Product management">
+  <img src="docs/screenshots/inventory.png" width="48%" alt="Inventory">
+</p>
+
+### Login
+
+<p align="center">
+  <img src="docs/screenshots/login.png" width="55%" alt="Login page">
 </p>
 
 ## Project Context
